@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="shortcut icon" href="#"> <!-- I was getting a favicon err -->
+</head>
+<body>
+	<!-- if no results are found -->
+	<div th:fragment="nameNotFound">
+		<div class="b">
+			<h2 th:field="${firstName}"> Name Not Found</h2>
+		</div>
+	</div>
+	<!-- this is where the search result is generated -->
+	
+    <div th:fragment="separator">
+        <div class="a">
+			<h2>Show Results of Search</h2>
+			<table border="1" cellpadding="10" align="center">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Actions</th>
+
+					</tr>
+				</thead>
+			
+				<tbody>
+					
+					<tr th:each="user:${searchUsers}">
+						<td th:text = "*{user.user_id}">ID</td>
+						<td th:text = "*{user.firstName}">First Name</td>
+						<td th:text = "*{user.lastName}">Last Name</td>
+						<td th:text = "*{user.email}">Email</td>
+						<td th:text = "*{user.phone}">Phone</td>
+					
+						<td>
+							<a th:href = "@{'/edit/' + ${user.user_id}}">Edit</a>
+							<a th:href = "@{'/delete' + ${user.user_id}}">Delete</a>
+						</td>
+						
+					</tr>
+					
+				</tbody>
+		
+			</table>
+		</div>
+    </div>
+</body>
+</html>

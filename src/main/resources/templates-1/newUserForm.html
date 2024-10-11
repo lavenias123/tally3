@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>New User Added</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="shortcut icon" href="#"><!-- I was getting a favicon err -->
+		<link rel="stylesheet" href="tally3B.css">
+	</head>
+	<body>
+		<div align="center">
+			<h1>Add New User</h1>
+			<h2>From T-1 Folder</h2>
+			<form action="#" th:action="@{/save}" th:object="${users}" method="POST">
+			
+				<table border="1" cellpadding="10">
+					
+						<tr>
+							<td>First Name:</td>
+							<td><input type="text" th:field="*{firstName}"></td>
+						</tr>
+						<tr>	
+							<td>Last Name:</td>
+							<td><input type="text" th:field="*{lastName}"></td>
+						</tr>
+						<tr>
+							<td>Email:</td>
+							<td><input type="text" th:field="*{email}"></td>
+	
+						</tr>
+							
+							<td>Phone:</td>
+							<td><input type="text" th:field="*{phone}"></td>
+						
+						<tr>
+						<td colspan="2"><button type="submit">Save</button></td>
+					</tr>
+						
+				</table>
+			</form>
+		</div>
+	</body>
+	
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+		
+		<head>
+		<title>Edit User Form</title>
+		<meta charset="UTF-8">
+		<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+		<link rel="stylesheet" href="tally3B.css">
+		<link rel="shortcut icon" href="#"> <!-- I was getting a favicon err -->
+	</head>
+	<body>
+		<div align="center">
+			<h1>Edit Form Two</h1>
+			<h2>From Templates-1 Folder</h2>
+			<form action="#" th:action="@{/update}" th:object="${users}" method="post">
+				<table border="1" cellpadding="10">

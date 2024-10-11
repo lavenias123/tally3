@@ -1,0 +1,28 @@
+form h1 {margin-left: 70px; text-align: center;}
+
+form li {
+	list-style: none;
+	margin-bottom: 5px;
+}
+
+form ul li label {
+	float: left;
+	clear: left;
+	width: 270px;
+	text-align: right;
+	margin-right: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+form li input {
+	margin-right: 10px;
+	margin-bottom: 5px;
+}
+
+form p {
+	text-align: center;
+	margin-left: 70px;
+	font-weight: bold;
+}
+

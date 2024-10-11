@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Calorie Calculator Application 3</title>
+		<meta charset="UTF-8">
+		<!-- <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+		<link rel="stylesheet" href="tally3B.css">
+		<link rel="shortcut icon" href="#"> <!-- I was getting a favicon err -->
+	</head>
+	<body>
+		<div align="center">
+			<h1>Users Records</h1>
+			<h2>From Templates Folder</h2>
+			<h3>Home Page</h3>
+			<a href="/new">Enter New User</a>
+			<!-- this should be to an end point -->
+			<table border="1" cellpadding="10">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Actions</th>
+
+					</tr>
+				</thead>
+			
+				<tbody>
+					<tr th:each="user:${listUsers}">
+						<td th:text = "*{user.user_id}">ID</td>
+						<td th:text = "*{user.firstName}">First Name</td>
+						<td th:text = "*{user.lastName}">Last Name</td>
+						<td th:text = "*{user.email}">Email</td>
+						<td th:text = "*{user.phone}">Phone</td>
+						
+						<td>
+							<a th:href = "@{'edit' + ${user.user_id}}">Edit</a>
+							<a th:href = "@{'/delete/' + ${user.user_id}}">Delete</a>
+						</td>
+						
+					</tr>
+				</tbody>
+		
+		
+			</table>
+		</div>
+	</body>
+	
+</html>

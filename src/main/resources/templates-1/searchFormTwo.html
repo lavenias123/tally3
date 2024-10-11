@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Search Users</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="shortcut icon" href="#"><!-- I was getting a favicon err -->
+		<link rel="stylesheet" href="tally3B.css">
+		<link rel="stylesheet" href="fragStyles.css">
+		<link rel="stylesheet" href="t3Validate.css">
+		<script src="searchFormValidate.js"></script>
+	</head>
+	<body onload="document.searchForm.fName.focus();">
+		<div align="center">
+			<h1>Search For A User</h1>
+			<h2></h2>
+			<form name="searchForm" action="#" th:action="@{/find}" th:object="${users}" method="get">
+				<table border="1" cellpadding="10">
+					
+						<tr>
+							<td>First Name:</td>
+							<td><input type="text" name="firstName" field="*{firstName}" id="fName" size="25" onblur="firstNameValidate();"><span id="fNameErr"></span></td>
+						</tr>
+						<tr>	
+							<td>Last Name:</td>
+							<td><input type="text" name="lastName" field="*{lastName}" id="lName" size="25" onblur="lastNameValidate();"><span id="lNameErr"></span></td>
+						</tr>
+						
+				</table>
+				<button type="submit" id="submit">Find</button>
+				<button type="reset" id="reset">Reset</button>
+			</form>
+		</div>
+		 
+		 <!-- if no search results are found -->
+		<div>
+			<div th:replace = "~{fragments :: nameNotFound}"></div>
+			<div class="b"></div>
+		</div>
+		 
+		 <!-- this is where the search results will be displayed for a user(s) -->
+		
+		<div> 
+			<div th:insert="~{fragments :: separator}"></div>
+			<div class="a"></div>
+		</div>
+		
+	</body>
+	
+</html>

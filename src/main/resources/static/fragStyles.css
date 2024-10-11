@@ -1,0 +1,30 @@
+h1 {
+  border-style: solid;
+}
+
+h2 {
+  border-style: dashed;
+}
+
+h3 {
+  border-style: dotted;
+}
+
+.a {
+  border-style: dotted;
+  border-top-color: coral;
+  align-content: center;
+}
+
+.b {
+  border-style: dashed;
+  border-top-color: purple;
+  align-content: center;
+}
+
+#submit , #reset {
+	width: 150px;
+	height: 40px;
+	display:inline-block;
+	/* additional code */
+}
