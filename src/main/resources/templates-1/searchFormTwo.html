@@ -19,11 +19,11 @@
 					
 						<tr>
 							<td>First Name:</td>
-							<td><input type="text" name="firstName" field="*{firstName}" id="fName" size="25" onblur="firstNameValidate();"><span id="fNameErr"></span></td>
+							<td><input type="text" name="firstName" field="*{firstName}" id="fName" size="25" onblur="firstNameValidate();" pattern="^[A-Za-z]+$"><span id="fNameErr"></span></td>
 						</tr>
 						<tr>	
 							<td>Last Name:</td>
-							<td><input type="text" name="lastName" field="*{lastName}" id="lName" size="25" onblur="lastNameValidate();"><span id="lNameErr"></span></td>
+							<td><input type="text" name="lastName" field="*{lastName}" id="lName" size="25" onblur="lastNameValidate();" pattern="^[A-Za-z]+$"><span id="lNameErr"></span></td>
 						</tr>
 						
 				</table>
@@ -32,9 +32,9 @@
 			</form>
 		</div>
 		 
-		 <!-- if no search results are found -->
+		 <!-- if no search results are found. 12-3 changed replace to insert no change conclusion I don't have a msg in @C for this conditional-->
 		<div>
-			<div th:replace = "~{fragments :: nameNotFound}"></div>
+			<div th:insert = "~{fragments :: nameNotFound}"></div>
 			<div class="b"></div>
 		</div>
 		 
@@ -44,6 +44,7 @@
 			<div th:insert="~{fragments :: separator}"></div>
 			<div class="a"></div>
 		</div>
+		
 		
 	</body>
 	

@@ -110,11 +110,11 @@ public class Tally3Dao {
 		
 		String sql = "Select * from users where first_name = ? or last_name = ?";
 		List<Users> listResults = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Users.class), first_name, last_name);
-		System.out.println("From the DAO " + listResults);
-		System.out.println("This is the first name " + first_name);
+		//System.out.println("From the DAO " + listResults);
+		//System.out.println("From the DAO This is the first name " + first_name);
 		
 		if (listResults.isEmpty()) {
-			System.out.println("Sorry name not found");
+			System.out.println("From the DAO: Sorry name not found");
 			return null;
 		} else {
 			return listResults; 
@@ -124,6 +124,46 @@ public class Tally3Dao {
 		
 	} // searchForUser end
 	
+	// search for first_name
+	
+public List<Users> searchByFirstName(String first_name) {	
+		
+		String sql = "Select * from users where first_name = ?";
+		List<Users> firstNameListResults = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Users.class), first_name);
+		System.out.println("From the DAO " + firstNameListResults);
+		System.out.println("From the DAO This is the first name " + first_name);
+		
+		if (firstNameListResults.isEmpty()) {
+			System.out.println("From the DAO: Sorry first name: " + first_name + " was not found");
+			return null;
+		} else {
+			return firstNameListResults; 
+		
+		} 
+		
+		
+	} // searchForFirstName end
+
+// search for last_name
+
+public List<Users> searchByLastName(String last_name) {	
+	
+	String sql = "Select * from users where last_name = ?";
+	List<Users> lastNameListResults = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Users.class), last_name);
+	System.out.println("From the DAO " + lastNameListResults);
+	System.out.println("From the DAO This is the last name " + last_name);
+	
+	if (lastNameListResults.isEmpty()) {
+		System.out.println("From the DAO: Sorry last name: " + last_name + " was not found");
+		return null;
+	} else {
+		return lastNameListResults; 
+	
+	} 
+	
+	
+} // searchForLastName end
+
 }	// Tally3Dao end
 	
 	
@@ -133,7 +173,7 @@ public class Tally3Dao {
 	public String List<Users> searchForUser(String first_name) {
 //			String sql = "Select * from users where user_id = ? "
 //			String sql = "Select * from users where first_name = ?, "
-			String sql = "Select * from users where first_name = ?";
+			String sql = "Select * from users where last_name = ?";
 //					+ "And first_name = ?, "
 //					+ " OR last_name = ?, "
 //					+ " OR email = ?, "

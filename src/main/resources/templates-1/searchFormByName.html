@@ -1,0 +1,99 @@
+<!-- searchFormByName 11-08 -->
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Search for User First | Last Name</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="shortcut icon" href="#"><!-- I was getting a favicon err -->
+		<link rel="stylesheet" href="tally3B.css">
+		<link rel="stylesheet" href="fragStyles.css">
+		<link rel="stylesheet" href="t3Validate.css">
+		<script src="searchFormValidate.js"></script>
+		
+	</head>
+	<body>
+		<div align="center">
+			<h1>Search By First Name</h1>
+			<h2></h2>
+			<form name="searchFirstName" action="#" th:action="@{/findByName}" th:object="${users}" method="get">
+				<table border="1" cellpadding="10">
+					
+						<tr>
+							<td>First Name:</td>
+							<td><input type="text" name="firstName" field="*{firstName}" id="fName" size="25" onblur="firstNameValidate();" pattern="^[A-Za-z]+$"><span id="fNameErr"></span></td>
+						</tr>
+						
+				</table>
+				<button type="submit" id="submit">Find</button>
+				<button type="reset" id="reset" onclick="clearMessage()">Reset</button>
+			</form>
+			
+	<!-- *********************************************************************** -->
+			<!-- search for user's last name -->
+			
+			<form name="searchLastName" action="#" th:action="@{/findByLastName}" th:object="${users}" method="get">
+				<h1>Search By Last Name</h1>
+				<h2></h2>
+				<table border="1" cellpadding="10">
+					
+						<tr>	
+							<td>Last Name:</td>
+							<td><input type="text" name="lastName" field="*{lastName}" id="lName" size="25" onblur="lastNameValidate();" pattern="^[A-Za-z]+$"><span id="lNameErr"></span></td>
+						</tr>
+						
+				</table>
+				<button type="submit" id="submit">Find</button>
+				<button type="reset" id="reset" onclick="clearMessage()">Reset</button>
+			</form>
+
+		</div>
+		 
+		 <!--
+		  no search results are found
+		   
+		<div>
+			<div th:replace = "~{fragments :: firstNameFailed}"></div>
+			<div class="a"></div>
+			<h4>This is in first name parent</h4>
+		</div>
+		 -->
+		<div>
+			<div th:replace = "~{fragments :: nameFailed}"></div>
+			<div class="b"></div>
+		</div>
+
+		 <!-- this is where the search results will be displayed for a user(s) -->
+		
+		<div> 
+			<div th:insert="~{fragments :: separator}"></div>
+			<div class="a"></div>
+		</div>
+		
+		<script type="text/javascript">
+		
+		function clearMessage() {
+			document.getElementById("fNameErr").innerHTML="";
+			document.getElementById("lNameErr").innerHTML="";
+		}
+		
+		</script>
+		
+		<!-- 11/19 adding prevent default code to FIND btns 
+		<script type="text/javascript">
+			let prevDefault = function(evt) {
+				console.log("This is a submit event");
+				evt.prevDefault();
+			}
+			var submitBtn = document.getElementById('submit');
+			submitBtn.addEventListener("submit", prevDefault, true);
+		
+		12/3 this code isn't being used
+		document.getElementById('submit1').addEventListener("click", function(event) {event.preventDefault();
+		});
+		</script>
+		-->
+	</body>
+	
+</html> 
+<!-- searchFormByName 11-08 end -->

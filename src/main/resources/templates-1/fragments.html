@@ -7,9 +7,27 @@
 	<!-- if no results are found -->
 	<div th:fragment="nameNotFound">
 		<div class="b">
-			<h2 th:field="${firstName}"> Name Not Found</h2>
+			<h2 th:text="*{message}"></h2>
 		</div>
 	</div>
+	
+	<!-- if no results are found new code for names-->
+	<!-- 
+	<div th:fragment="firstNameFailed">
+		<div class="a">
+			<h2 th:text="*{message}"></h2>
+			 <h2 th:field="${firstName}"> First Name Not Found</h2> 
+	
+		</div>
+	</div> -->
+
+	<div th:fragment="nameFailed">
+		<div class="a">
+			<h2 th:text="*{message}"></h2>
+		</div>
+	</div>
+
+	
 	<!-- this is where the search result is generated -->
 	
     <div th:fragment="separator">

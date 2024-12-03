@@ -80,14 +80,13 @@ public class Tally3Controller {
 		return "redirect:/home";
 	}
 
-// ************************ SEARCH FOR A USER ************************
+// ************************ SEARCH FOR USER First & Last name ************************
 	
 	// displays the search form
 	@GetMapping("/search")
 	public String showSearchForm() {
 		return "searchFormTwo";
 	}
-	// 7-31 M&V IS REPLACED WITH Model, because I need to loop thru the DB
 	
 	@GetMapping("/find")	
 	public String showSearchResults(@RequestParam(value="firstName", required=false)String firstName,
@@ -100,119 +99,110 @@ public class Tally3Controller {
 		m.addAttribute("lastName", lastName);
 		m.addAttribute("searchUsers", listResults);
 		
+
 		try {
 			
 			if(listResults == null) {
-				//return "fragments :: nameNotFound";
-			return "searchFormTwo";
-		//					return "searchFormTwo/fragments :: nameNotFound";
+				
+				String msg = "Sorry " + firstName + " nor " +lastName + " was found in DB";
+				m.addAttribute("message", msg);
+				
+				System.out.println(msg);
+				return "searchFormTwo";
+				
 			} else {
 			
-			System.out.println("listResults should be here from Controller");
-			System.out.println(firstName);
+			System.out.println("listResults are from the Controller" + listResults);
+			System.out.println("First name is from controller: " + firstName);
 			System.out.println(listResults.size());
 			return "searchFormTwo";
-			//			return "fragments :: separator";
 			
 			}
-			
+	
 		} catch (Exception e) {
 			e.printStackTrace();
 			return "redirect:/";
 		}
-	
-	}
-	
-	
-	
-	
-	
-	/*
-	// 7-26 M&V | Model, but not both because they accomplish the same task
-	@GetMapping("/find")	
-	public List<Users> showSearchResults(@RequestParam(required = false)String firstName,
-			@RequestParam(required = false) String lastName, ModelAndView mav) {
-		
-		mav = new ModelAndView("fragments");
-		List<Users> resultList= dao.searchForUser(firstName, lastName);
-		
-		mav.addObject("firstName", firstName);
-		mav.addObject("lastName", lastName);
-		//.setViewName("fragments");
-		
-		System.out.println("listResults should be here");
-		System.out.println(firstName);
-		System.out.println(resultList);
-		return resultList;
-//		return mav;
-		
-	}
-	
-	
-	@RequestMapping("/search")
-	public ModelAndView showSearchForm(@PathVariable("first_name") String first_name, String last_name) {
 
-		ModelAndView mav = new ModelAndView("searchFormTwo");
-		List<Users> user = dao.acquireFNorLN(first_name, last_name);
-		mav.addObject("Users", user);
-		return mav;
-	}
-	*/
-	/*
-	// search for a user
+	} // showSearchResults end
 	
-	//@GetMapping("/find")
-		public String findUser(String firstName, String lastName, Model theModel) {
-//			Users listResults = dao.searchForUser(null, null, null, null);
-		System.out.println(firstName);
-		List <Users> listResults = dao.acquireFNorLN(firstName, lastName);
-			theModel.addAttribute("searchUsers", listResults);
-			System.out.println("listResults should be here");
-			System.out.println(firstName);
-			System.out.println(listResults); //[] empty set
-			return "fragments";
-		
+	// ************************ SEARCH FOR USER By First Name ************************
+	// displays the search form
+		@GetMapping("/searchByName")
+		public String showFirstAndLastNameSearchForm() {
+			return "searchFormByName";
 		}
-/*
 		
-		
-	/** 
-	@RequestMapping("/search")
-	public ModelAndView showSearchForm(@PathVariable("first_name, last_name, email, phone") String first_name, String last_name, String email, String phone) {
+		@GetMapping("/findByName")	
+		public String showFirstNameSearchResults(@RequestParam(value="firstName", required=false)String firstName,
+			Model m) {
+			List<Users> firstNameListResults = dao.searchByFirstName(firstName);
+			
+			m.addAttribute("firstName", firstName);
+			//m.addAttribute("searchUsersByName", firstNameListResults);
+			m.addAttribute("searchUsers", firstNameListResults);
+			try {
+				
+				if(firstNameListResults == null) {
+					
+					String msg = "Sorry " + firstName + " wasn't found in the DataBase!";
+					m.addAttribute("message", msg);
+					
+					System.out.println(msg);
+					return "searchFormByName";
+					
+				} else {
+					// this code only runs when there are results!!!
+					System.out.println("first name list Results are from the Controller" + firstNameListResults);
+					System.out.println(firstName);
+					System.out.println(firstNameListResults.size());
+					return "searchFormByName";
+					
+					}
+			
+				} catch (Exception e) {
+					e.printStackTrace();
+					return "redirect:/";
+				}
 
-		ModelAndView mav = new ModelAndView("");
-//		Users user = dao.get(user_id);
-		Users user = dao.searchForUser(first_name, last_name, email, phone);
-		mav.addObject("searchUsers", user);
-		return mav;
-	}
-		
-// ************************ TUTORIAL ************************
-	// sp Web M&V |08| tutorial
-	// first method is the model
-	// can't have dup@RequestMapping(value="album", method=RequestMethod.GET)
-	public String userAlbum(int user_id, String firstName, String lastName, Model m) {
-		m.addAttribute("user_id", 101);
-		m.addAttribute(firstName, "Sammy");
-		m.addAttribute(lastName, "Davis");
-		
-		return "fragments";
-	}
-	
-	
-	// sp Web M&V |08| tutorial
-	// second method is M&V
-	@RequestMapping(value="/album", method=RequestMethod.GET)
-	public ModelAndView showUserAlbum(String firstName, String lastName) {
+			} // showFirstNameSearchResults end
+			
+	// ************************ SEARCH FOR USER Last name ************************
+			
+		@GetMapping("/findByLastName")	
+		public String showLastNameSearchResults(@RequestParam(value="lastName", required=false)String lastName,
+			Model m) {
+			List<Users> lastNameListResults = dao.searchByLastName(lastName);
+			
+			m.addAttribute("lastName", lastName);
+			m.addAttribute("searchUsers", lastNameListResults);
+			try {
+				
+				if(lastNameListResults == null) {
+					
+					String msg = "Sorry " + lastName + " wasn't found in the DataBase!";
+					m.addAttribute("message", msg);
+					
+					System.out.println(msg);
+					return "searchFormByName";
+					
+				} else {
+					// this code only runs when there are results!!!
+					System.out.println("Last name list Results are from the Controller" + lastNameListResults);
+					System.out.println(lastName);
+					System.out.println(lastNameListResults.size());
+					return "searchFormByName";
+					
+					}
+			
+				} catch (Exception e) {
+					e.printStackTrace();
+					return "redirect:/";
+				}
 
-		ModelAndView mav = new ModelAndView("fragments");
-		mav.addObject("user_id", 101);
-		mav.addObject("firstName", "Sammy");
-		mav.addObject("lastName", "Davis");
-		return mav;
-	}
-	
-	// sp Web M&V |08| TUTORIAL ENDS ************************ 
-**/
-}
+			} // showFirstNameSearchResults end
+		
+		
+		
+} // Tally3Controller end
 
