@@ -4,16 +4,15 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.0</version>
+		<artifactId>spring-boot-starter-parent</artifactId>		<version>3.3.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.stewartlavenia</groupId>
-	<artifactId>tally3</artifactId>
+	<groupId>com.stewartlavenia.tally4</groupId>
+	<artifactId>tally4</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>tally3</name>
-	<description>Rebuild CalCalc2</description>
+	<name>tally4</name>
+	<description>Update final proj on AirBk2</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -30,6 +29,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

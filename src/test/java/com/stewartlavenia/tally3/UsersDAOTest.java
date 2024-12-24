@@ -47,25 +47,23 @@ class UsersDAOTest {
 	
 	@Test
 	void testSave() { // works
-		Users users = new Users(36, "Jeff", "Simpson", "jSimpson@gmail.com", "000-010-8989");
+		Users users = new Users(12, "Reese", "Otter", "otterR@district17.org", "718-522-6427");
 		dao.save(users);
 	}
 	
 	@Test
-	void testGet() { // works
-		int user_id = 26;
+	void testGet() { 
+		int user_id = 2;
 		Users user = dao.get(user_id);
-//		System.out.println(user_id);
+		System.out.println(user_id);
 		assertNotNull(user);
 	}
 	
 	@Test
-	void testUpdate() { // doesn't work
-		// with update I'm not creating a newUser am I?
+	void testUpdate() { 
 		Users user = new Users();
-		// I hadn't set a user_id I wanted to have updated
-		// that was the solution adding a user_id to update!!!
-		user.setUser_id(1);
+
+		user.setUser_id(4);
 		user.setFirstName("Sam");
 		user.setLastName("Cooke");
 		user.setEmail("sCooke@code.net");
@@ -75,10 +73,11 @@ class UsersDAOTest {
 	}
 	
 	@Test
-	void testDelete() { // works
-		int user_id = 23;
+	void testDelete() { 
+		int user_id = 3;
 		dao.delete(user_id);
 	}
+	
 /*
 	@Test
 	public void returnResults() {

@@ -38,8 +38,12 @@ public class Tally3Dao {
 	
 	// the customer list to return
 	public List<Users> customerList() {
-		String sql = "Select * from Users "
-				+ "join user_goals using(user_id);";
+		/*
+		String sql = "Select * from users "
+				+ "join user_goals using(user_id)";
+			//+ "join user_goals using(user_fk);"; */
+		String sql = "Select * from users join user_goals ON "
+		+ "users.user_id = user_goals.user_fk;";
 		
 		List<Users> listCustomers = jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Users.class));
 		
